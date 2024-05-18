@@ -420,16 +420,31 @@ python inference_disentanglement.py -task ranking -model bert -max_input 6000000
 
 ### evaluation
 
-You may use [calculate_mrr.py]()
+###### MRR
+
+You may use [calculate_mrr.py](https://github.com/genderdisen/genderdisen/blob/main/src/calculate_mrr.py) as follows to calculate the MRR measure.
 
 ```
 python calculate_mrr.py -qrels <qrels_path> -run <run_path>
 ```
 
-ARaB
+###### ARaB
+In order to calculate the ARaB metrics, you need to first run [documents_calculate_bias.py](https://github.com/genderdisen/genderdisen/blob/main/src/documents_calculate_bias.py) to calculate bias of each of the documents in the collectio. then you need to run [runs_calculate_bias.py](https://github.com/genderdisen/genderdisen/blob/main/src/runs_calculate_bias.py), anf finally [model_calculate_bias.py](https://github.com/genderdisen/genderdisen/blob/main/src/model_calculate_bias.py).
 
-NFair
+###### NFair
+For calculating the NFaiR metric, you need to run this command as mentioned in the [NFaiRR GitHub repository](https://github.com/CPJKU/FairnessRetrievalResults/tree/main/measurement).
 
-LIWC
+Calculating dcument neutrality scores: 
+```
+python3 calc_documents_neutrality.py --collection-path [PATH_TO_TSV_COLLECTION] --representative-words-path ../resources/wordlist_gender_representative.txt --threshold 1 --out-file processed/collection_neutralityscores.tsv
+```
+
+Calculating model fairness:
+```
+python metrics_fairness.py --collection-neutrality-path processed/collection_neutralityscores.tsv --backgroundrunfile sample_trec_runs/msmarco_passage/BM25.run --runfile sample_trec_runs/msmarco_passage/advbert_L4.run
+```
+###### LIWC
+
+To calculate the LIWC metric, you first need to get the LIWC dictionary from [their website](https://www.liwc.app) and then run [calculate_liwc_biases.py](https://github.com/genderdisen/genderdisen/blob/main/src/LIWC/calculate_liwc_biases.py).
 
 
