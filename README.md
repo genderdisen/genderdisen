@@ -145,7 +145,8 @@ Recent empirical research indicates that while neural ranking methods perform we
     </tr>
   </tbody>
 </table>
-</div>div>
+</div>
+
 ## Results of stereotypical gender bias reduction on 1765 gender-neutral query set, comparing with the state of the art baselines.
 <div align="center">
 <table style="font-size: smaller;">
@@ -290,11 +291,11 @@ Recent empirical research indicates that while neural ranking methods perform we
     </tr>
   </tbody>
 </table>
-<div>
+</div>div>
 
 # Performance of the original, and disentangled models on male, and female affiliated queries.
 
-<div style="center;">
+<div style="center">
   <table style="font-size: x-small; width: 50%; margin: 0 auto; border-collapse: collapse;">
     <caption>Performance of the original, and disentangled models on male, and female affiliated queries.</caption>
     <thead>
