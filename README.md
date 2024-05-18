@@ -4,6 +4,7 @@ This repository includes the code and experimental details for the paper "Neural
 Recent empirical research indicates that while neural ranking methods perform well in retrieval effectiveness, they often amplify stereotypical biases, particularly gender biases. Current mitigation strategies focus on modifying training methods or balancing training data but generally overlook direct attention to gender as an attribute. This paper introduces a systematic approach that explicitly acknowledges gender within neural ranker representations. The proposed neural disentanglement method separates content semantics from gender information in neural representations, enabling the ranker to assess document relevance based on content alone. Extensive experiments demonstrate that (1) the disentanglement approach achieves competitive retrieval effectiveness compared to baselines and maintains consistency across queries with different gender associations, (2) it produces unbiased document lists that do not favor any gender, and (3) it effectively captures gender information independently of semantic content. The network architecture of the gender disentanglement model is shown in the figure bellow.
 
 <div align="center">
+  
 ##### Figure 1. Overview of the proposed neural disentanglement architecture.
   <img src="https://github.com/genderdisen/genderdisen/blob/main/results/network_arch.png" width="500" height="300"/>
 </div>
@@ -359,28 +360,30 @@ Recent empirical research indicates that while neural ranking methods perform we
 </div>
 
 ### Train
+To train the original model (without disentanglement), you need to run [my_train_priginal.py](https://github.com/genderdisen/genderdisen/blob/main/src/my_train_original.py)
+with the following setup:
 
-Training the minilm-L6 model:
-
-Original model:
+###### Original minilm-L6 model:
 
 ```
 python my_train_original.py -vocab sentence-transformers/msmarco-MiniLM-L6-cos-v5 -pretrain sentence-transformers/msmarco-MiniLM-L6-cos-v5 -res <results_path> -save <checkpoint_save_path> -n_warmup_steps 160000 -batch_size 16 -attribute_dim 100 -optimizer adam -lr 3e-6
 ```
 
-Disentangled Model:
-```
-python my_train_disentangled.py -vocab sentence-transformers/msmarco-MiniLM-L6-cos-v5 -pretrain sentence-transformers/msmarco-MiniLM-L6-cos-v5 -res <results_path> -save <checkpoint_save_path> -n_warmup_steps 160000 -batch_size 16 -attribute_dim 50 -optimizer adam -lr 3e-4
-```
-Training the bert-mini model:
-
-Original Model:
+###### Original bert-mini model:
 ```
 python my_train_original.py -vocab prajjwal1/bert-mini -pretrain prajjwal1/bert-mini -res <results_path> -save <checkpoint_save_path> -n_warmup_steps 160000 -batch_size 16 -lr 3e-6 -max_query_len 32 -max_doc_len 221
 
 ```
 
-disentabgled Model:
+To train the disentanglement model , you need to run [my_train_disentangled.py](https://github.com/genderdisen/genderdisen/blob/main/src/my_train_disentangled.py)
+with the following setup:
+###### Disentangled minilm-L6 model:
+```
+python my_train_disentangled.py -vocab sentence-transformers/msmarco-MiniLM-L6-cos-v5 -pretrain sentence-transformers/msmarco-MiniLM-L6-cos-v5 -res <results_path> -save <checkpoint_save_path> -n_warmup_steps 160000 -batch_size 16 -attribute_dim 50 -optimizer adam -lr 3e-4
+```
+
+###### Disentangled bert-mini model:
+
 ```
 python my_train_disentangled.py -vocab prajjwal1/bert-mini -pretrain prajjwal1/bert-mini -res .<results_path> -save <checkpoint_save_path> -n_warmup_steps 160000 -batch_size 16 -attribute_dim 50 -optimizer 'adam' -lr 3e-5 -max_query_len 32 -max_doc_len 221 -alpha 1 -betta 1 -gamma 1
 ```
@@ -388,15 +391,28 @@ python my_train_disentangled.py -vocab prajjwal1/bert-mini -pretrain prajjwal1/b
 
 ### inference
 
-minilm
+To do the inference, and rerank-the top-1000 BM25 documents, you need to run [inference.py](https://github.com/genderdisen/genderdisen/blob/main/src/inference.py), and [inference_disentanglement.py](https://github.com/genderdisen/genderdisen/blob/main/src/inference_disentanglement.py) with the following setup for the original and the disentangled models, respectively.
 
+###### Original minilm model:
+
+```
+python inference.py -task ranking -model bert -max_input 600000000 -vocab sentence-transformers/msmarco-MiniLM-L6-cos-v5 -pretrain sentence-transformers/msmarco-MiniLM-L6-cos-v5  -checkpoint <checkpoint_save_path> -res <result_path> -max_query_len 32 -max_doc_len 221 -batch_size 256 -test queries=<test_query_path>,docs=<collection_path>,trec=<run_path>
+```
+
+###### Original bert-mini model:
+
+```
+python inference.py -task ranking -model bert -max_input 600000000 -vocab prajjwal1/bert-mini -pretrain prajjwal1/bert-mini -checkpoint ${save_path} -res ${res_path} -max_query_len 32 -max_doc_len 221 -batch_size 256 -test queries=<test_query_path>,docs=<collection_path>,trec=<run_path>
+```
+
+
+###### Disentangled minilm model:
 
 ```
 python inference_disentanglement.py -task ranking -model bert -max_input 600000000 -vocab sentence-transformers/msmarco-MiniLM-L6-cos-v5 -pretrain sentence-transformers/msmarco-MiniLM-L6-cos-v5  -checkpoint <checkpoint_save_path> -res <result_path> -max_query_len 32 -max_doc_len 221 -batch_size 256 -attribute_dim 50 -test queries=<test_query_path>,docs=<collection_path>,trec=<run_path>
 ```
 
-bert-mini
-
+###### Disentangled bert-mini model:
 
 ```
 python inference_disentanglement.py -task ranking -model bert -max_input 600000000 -vocab prajjwal1/bert-mini -pretrain prajjwal1/bert-mini -checkpoint ${save_path} -res ${res_path} -max_query_len 32 -max_doc_len 221 -batch_size 256 -attribute_dim 50 -test queries=<test_query_path>,docs=<collection_path>,trec=<run_path>
@@ -404,7 +420,7 @@ python inference_disentanglement.py -task ranking -model bert -max_input 6000000
 
 ### evaluation
 
-MRR
+You may use [calculate_mrr.py]()
 
 ```
 python calculate_mrr.py -qrels <qrels_path> -run <run_path>
