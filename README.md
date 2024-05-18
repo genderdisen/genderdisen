@@ -418,6 +418,7 @@ python inference_disentanglement.py -task ranking -model bert -max_input 6000000
 python inference_disentanglement.py -task ranking -model bert -max_input 600000000 -vocab prajjwal1/bert-mini -pretrain prajjwal1/bert-mini -checkpoint ${save_path} -res ${res_path} -max_query_len 32 -max_doc_len 221 -batch_size 256 -attribute_dim 50 -test queries=<test_query_path>,docs=<collection_path>,trec=<run_path>
 ```
 
+The re-ranled run-files for the 215, qnd 1765 queries are provided in the [runs](https://github.com/genderdisen/genderdisen/tree/main/runs) directory.
 ### evaluation
 
 ###### MRR
