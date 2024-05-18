@@ -24,7 +24,7 @@ def main():
     run = {}
     with open(args.run, 'r') as f_run:
         for line in f_run:
-            qid, _, did, _, _, _ = line.strip().split(" ")
+            qid, did, _ = line.strip().split("\t")
             if qid not in run: 
                 run[qid] = []
             run[qid].append(did)
