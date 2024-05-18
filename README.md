@@ -294,7 +294,7 @@ Recent empirical research indicates that while neural ranking methods perform we
 
 # Performance of the original, and disentangled models on male, and female affiliated queries.
 
-<div style="text-align: center;">
+<div style="center;">
   <table style="font-size: x-small; width: 50%; margin: 0 auto; border-collapse: collapse;">
     <caption>Performance of the original, and disentangled models on male, and female affiliated queries.</caption>
     <thead>
