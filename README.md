@@ -3,8 +3,8 @@
 This repository includes the code and experimental details for the paper "Neural Disentanglement of Gender from Content Semantics for Fair and Effective Re-ranking". 
 Recent empirical research indicates that while neural ranking methods perform well in retrieval effectiveness, they often amplify stereotypical biases, particularly gender biases. Current mitigation strategies focus on modifying training methods or balancing training data but generally overlook direct attention to gender as an attribute. This paper introduces a systematic approach that explicitly acknowledges gender within neural ranker representations. The proposed neural disentanglement method separates content semantics from gender information in neural representations, enabling the ranker to assess document relevance based on content alone. Extensive experiments demonstrate that (1) the disentanglement approach achieves competitive retrieval effectiveness compared to baselines and maintains consistency across queries with different gender associations, (2) it produces unbiased document lists that do not favor any gender, and (3) it effectively captures gender information independently of semantic content.
 
-# Results of stereotypical gender bias reduction on 215 gender-neutral query set, comparing with the state of the art baselines.
-
+## Results of stereotypical gender bias reduction on 215 gender-neutral query set, comparing with the state of the art baselines.
+<div align="center">
 <table style="font-size: smaller;">
   <thead>
     <tr>
@@ -145,9 +145,9 @@ Recent empirical research indicates that while neural ranking methods perform we
     </tr>
   </tbody>
 </table>
-
-# Results of stereotypical gender bias reduction on 1765 gender-neutral query set, comparing with the state of the art baselines.
-
+</div>div>
+## Results of stereotypical gender bias reduction on 1765 gender-neutral query set, comparing with the state of the art baselines.
+<div align="center">
 <table style="font-size: smaller;">
   <thead>
     <tr>
@@ -290,7 +290,7 @@ Recent empirical research indicates that while neural ranking methods perform we
     </tr>
   </tbody>
 </table>
-
+<div>
 
 # Performance of the original, and disentangled models on male, and female affiliated queries.
 
