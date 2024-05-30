@@ -69,15 +69,6 @@ Recent empirical research indicates that while neural ranking methods perform we
       <td>0.4114</td>
     </tr>
     <tr>
-      <td>Light Weight</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
       <td>Ours</td>
       <td>0.1877</td>
       <td>0.0737</td>
@@ -134,15 +125,6 @@ Recent empirical research indicates that while neural ranking methods perform we
       <td>0.0311</td>
       <td>0.9348</td>
       <td>0.3491</td>
-    </tr>
-    <tr>
-      <td>Light Weight</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
     </tr>
     <tr>
       <td>Ours</td>
@@ -215,15 +197,6 @@ Recent empirical research indicates that while neural ranking methods perform we
       <td>0.7199</td>
     </tr>
     <tr>
-      <td>Light Weight</td>
-      <td>0.2756</td>
-      <td></td>
-      <td>0.0195</td>
-      <td>0.0174</td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
       <td>Ours</td>
       <td>0.2969</td>
       <td>0.0805</td>
@@ -282,15 +255,6 @@ Recent empirical research indicates that while neural ranking methods perform we
       <td>0.0663</td>
       <td>0.8407</td>
       <td>0.6467</td>
-    </tr>
-    <tr>
-      <td>Light Weight</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
     </tr>
     <tr>
       <td>Ours</td>
