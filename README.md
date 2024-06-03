@@ -5,13 +5,15 @@ Recent empirical research indicates that while neural ranking methods perform we
 
 <div align="center">
   
-##### Figure 1. Overview of the proposed neural disentanglement architecture.
+
   <img src="https://github.com/genderdisen/genderdisen/blob/main/results/network_arch.png" width="500" height="300"/>
 </div>
 
 
 
 <div align="center">
+  
+##### Figure 1. Overview of the proposed neural disentanglement architecture.
   
 ##### Table1. Results of stereotypical gender bias reduction on 215 gender-neutral query set, comparing with the state of the art baselines.
 
